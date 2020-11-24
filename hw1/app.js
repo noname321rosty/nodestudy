@@ -18,7 +18,7 @@ async function getUsers () {
         const files = await readDirLV(path.join(classRoomPath, folder))
 
         for await (let file of files) {
-            // const fileRes = await readFileLV(path.join(classRoomPath, `${folder}`, `${file}`))
+           
             array.push(`${file}`)
         }
 
