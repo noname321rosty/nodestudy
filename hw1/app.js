@@ -2,7 +2,7 @@ const {promisify} = require('util')
 const fs = require('fs-extra');
 
 const readDirLV = promisify(fs.readdir)
-
+const readFileLV = promisify(fs.readFile)
 
 const path = require('path');
 
@@ -18,6 +18,7 @@ async function getUsers () {
         const files = await readDirLV(path.join(classRoomPath, folder))
 
         for await (let file of files) {
+            // const fileRes = await readFileLV(path.join(classRoomPath, `${folder}`, `${file}`))
             array.push(`${file}`)
         }
 
