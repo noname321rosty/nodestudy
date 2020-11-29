@@ -10,12 +10,14 @@
 <body>
 
 <form action="/users" method="get">
-    {{#each user}}
-        <div>{{this.user}}</div>
-        <div>{{this.password}}</div>
+    {{#each users}}
+        <div>{{this.name}} - {{this.password}} - {{this.email}}</div>
     {{/each}}
-</form>
 
+</form>
+<form action="/users" method="post">
+    <input type="submit" value="go back">
+</form>
 
 </body>
 </html>

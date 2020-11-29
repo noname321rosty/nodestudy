@@ -8,12 +8,16 @@
     <title>log in</title>
 </head>
 <body>
-
-<form action="/login" method="post">
-    <input type="text" name="name">
-    <input type="text" name="password">
-    <input type="submit" value="log in">
-</form>
-
+<h2>log in</h2>
+<div style="display: flex;">
+    <form action="/login" method="post">
+        <input type="text" placeholder="email" name="email">
+        <input type="text" placeholder="password" name="password">
+        <input type="submit" value="log in">
+    </form>
+    <form action="singin">
+        <input type="submit" value="sing in ">
+    </form>
+</div>
 </body>
 </html>
