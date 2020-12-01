@@ -18,6 +18,7 @@
   "devDependencies": {
     "@types/express-handlebars": "3.1.0",
     "eslint": "^7.14.0",
+    "husky": "^4.3.0",
     "@types/eslint": "^7.2.5",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.22.1",
@@ -25,5 +26,12 @@
     "eslint-plugin-promise": "^4.2.1",
     "@types/express": "^4.17.9",
     "@types/fs-extra": "^9.0.4"
+  },
+  "lint-staged": {
+    "*.{js, json}": [
+      "eslint",
+      "git add"
+    ]
   }
+
 }

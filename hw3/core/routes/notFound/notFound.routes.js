@@ -2,7 +2,7 @@ const {Router} = require('express');
 
 const notFoundRouter = Router();
 
-notFoundRouter.all('*', (req,res) => {
+notFoundRouter.all('*', (req, res) => {
     res.end('Router not found')
 })
 

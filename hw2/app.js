@@ -56,9 +56,6 @@ app.get('/singin', (req, res) => {
     res.render('singin')
 })
 
-
-
-
 app.listen(3000, err => err && console.log(err) || console.log('listen 3000'));
 
 
