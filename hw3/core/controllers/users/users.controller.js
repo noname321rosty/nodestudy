@@ -1,34 +1,34 @@
 const {usersService} = require("../../services");
 
-
 module.exports = {
     getAllUsers: (req, res) => {
-
-        const users = usersService.getUsers();
-
-        res.json(users);
-    },
-
-    getUserByEmailOrName: (req, res) => {
         const {email, name} = req.query;
 
-        const user = usersService.getUserByEmailOrName(email, name);
+        if (req.query){
+            const user = usersService.getUsers(email, name);
+            res.status(400).json(user);
+        }
 
-        res.json(user);
+        const users = usersService.getUsers();
+        res.status(400).json(users);
     },
+    // getUserByEmailOrName: (req, res) => {
+    //     const {email, name} = req.query;
+    //     const user = usersService.getUsers(email, name);
+    //
+    //     res.status(400).json(user);
+    // },
     createUser: (req, res) => {
         const user = req.body;
-
         const createdUser = usersService.createUser(user);
 
-        res.json(createdUser);
+        res.status(201).json(createdUser);
     },
     deleteUser: (req, res) => {
         const {id} = req.params;
+        const rm = usersService.deleteUser(id);
 
-        const rm = usersService.deleteUser(id)
-
-        res.json(rm);
+        res.status(200).json(rm);
     }
 }
 

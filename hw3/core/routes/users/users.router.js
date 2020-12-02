@@ -9,8 +9,6 @@ usersRouter.post('/', usersMiddlewares.checkUsersValid, usersMiddlewares.checkUs
 
 usersRouter.get('/', usersController.getAllUsers);
 
-usersRouter.get('/query', usersController.getUserByEmailOrName);
-
 usersRouter.delete('/:id', usersMiddlewares.checkUsersExistRemove, usersController.deleteUser);
 
 module.exports = usersRouter;
