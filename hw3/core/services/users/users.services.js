@@ -7,11 +7,10 @@ module.exports = {
         return user;
     },
 
-    getUsers: (email, name) => {
-        if (email, name) {
-            return db.users.find(user => user.email === email || user.name === name);
-        }
-        return db;
+    getUsers: (query) => {
+        return db.users.find({
+            where: query
+        })
     },
 
     deleteUser: (id) => {
