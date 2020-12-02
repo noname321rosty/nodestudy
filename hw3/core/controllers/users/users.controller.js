@@ -12,6 +12,13 @@ module.exports = {
 
         res.status(201).json(createdUser);
     },
+    getUserByEmailOrName: (req, res) => {
+        const {email, name} = req.query;
+
+        const user = usersService.getUserByEmailOrName(email, name);
+
+        res.json(user);
+    },
     deleteUser: (req, res) => {
         const {id} = req.params;
         const rm = usersService.deleteUser(id);

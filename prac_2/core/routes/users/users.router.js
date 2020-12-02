@@ -7,6 +7,8 @@ const usersRouter = Router();
 
 usersRouter.post('/', usersMiddlewares.checkUsersValid, usersMiddlewares.checkUserExist, usersController.createUser);
 
+
+
 usersRouter.get('/', usersController.getAllUsers);
 
 usersRouter.get('/query', usersController.getUserByEmailOrName);
