@@ -4,7 +4,7 @@ module.exports = {
     getAllUsers: (req, res) => {
         const user = usersService.getUsers(req.query);
 
-        res.status(400).json(user);
+        res.json(user);
     },
     createUser: (req, res) => {
         const user = req.body;
@@ -16,7 +16,7 @@ module.exports = {
         const {id} = req.params;
         const rm = usersService.deleteUser(id);
 
-        res.status(200).json(rm);
+        res.status(204).json(rm);
     }
 }
 

@@ -8,6 +8,6 @@ module.exports = (req, res, next) => {
 
         next()
     } catch (e) {
-        res.json(e.message);
+        res.status(204).json(e.message);
     }
 }
