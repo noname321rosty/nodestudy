@@ -7,10 +7,13 @@ module.exports ={
         res.json(car);
     },
     createCar: async (req, res) => {
-        const car = req.body;
-        const createdCar = await carsService.createCar(car);
+        try {
+            carsService.createCar(req.user);
 
-        res.json(createdCar)
+            res.status(201).json('car created');
+        } catch (e){
+            res.json(e.message);
+        }
     },
     getOneCar: async (req,res) => {
         const {name} = req.params;
@@ -20,9 +23,12 @@ module.exports ={
         res.json(car);
     },
     deleteCar: (req, res) => {
-        const {id} = req.params;
-        const remove = carsService.deleteCar(id);
+        try{
+            carsService.deleteCar(req.id);
 
-        res.status(204).json(remove);
+            res.status(204).json('car removed');
+        }catch (e){
+            res.json(e.message);
+        }
     }
 }

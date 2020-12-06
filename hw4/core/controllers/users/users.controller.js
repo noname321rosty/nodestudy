@@ -1,16 +1,20 @@
 const {usersService} = require("../../services");
 
+
 module.exports = {
     getAllUsers: async (req, res) => {
         const user = await usersService.getUsers(req.query);
 
         res.json(user);
     },
-    createUser: async (req, res) => {
-        const user = req.body;
-        const createdUser = await usersService.createUser(user);
+    createUser: (req, res) => {
+        try {
+            usersService.createUser(req.user);
 
-        res.json(createdUser)
+            res.status(201).json('user created');
+        } catch (e){
+            res.json(e.message);
+        }
     },
     getOneUser: async (req,res) => {
         const {name} = req.name;
@@ -25,10 +29,13 @@ module.exports = {
         res.json(user);
     },
     deleteUser: (req, res) => {
-        const {id} = req.params;
-        const rm = usersService.deleteUser(id);
+        try{
+            usersService.deleteUser(req.id);
 
-        res.status(204).json(rm);
+            res.status(204).json('user removed');
+        }catch (e){
+            res.json(e.message);
+        }
     }
 }
 
