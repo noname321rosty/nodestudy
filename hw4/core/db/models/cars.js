@@ -26,4 +26,7 @@ CarModal.init({
     }
 }, {sequelize})
 
+const user = require('./users');
+CarModal.belongsTo(user, {foreignKey: 'user_id'});
+
 module.exports = CarModal;
