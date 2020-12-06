@@ -7,7 +7,7 @@ module.exports ={
         res.json(car);
     },
     createCar: async (req, res) => {
-        req.car = car;
+        const car = req.body;
         const createdCar = await carsService.createCar(car);
 
         res.json(createdCar)
@@ -20,7 +20,7 @@ module.exports ={
         res.json(car);
     },
     deleteCar: (req, res) => {
-        req.id = { id };
+        const {id} = req.params;
         const remove = carsService.deleteCar(id);
 
         res.status(204).json(remove);

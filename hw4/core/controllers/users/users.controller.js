@@ -7,7 +7,7 @@ module.exports = {
         res.json(user);
     },
     createUser: async (req, res) => {
-        req.user = user;
+        const user = req.body;
         const createdUser = await usersService.createUser(user);
 
         res.json(createdUser)
@@ -25,7 +25,7 @@ module.exports = {
         res.json(user);
     },
     deleteUser: (req, res) => {
-        req.id = { id };
+        const {id} = req.params;
         const rm = usersService.deleteUser(id);
 
         res.status(204).json(rm);

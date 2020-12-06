@@ -1,10 +1,8 @@
-const {carService} = require('../../services');
-
 module.exports = (req, res, next) => {
     try {
-        let user = carService.getAllCars();
+        req.cars = cars;
 
-        if (!user) {
+        if (!cars) {
             throw new Error('Cars not exist in database');
         }
 
