@@ -7,6 +7,6 @@ const apiRouter = Router();
 
 apiRouter.use('/users', usersRouter);
 
-apiRouter.use('/cars',carsRouter);
+apiRouter.use('/cars', carsRouter);
 
 module.exports = apiRouter;
