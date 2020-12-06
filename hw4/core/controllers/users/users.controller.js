@@ -6,14 +6,12 @@ module.exports = {
 
         res.json(user);
     },
-    createUser: (req, res) => {
-        try {
-            usersService.createUser(req.user);
+    createUser: async (req, res) => {
+       const user = req.body;
 
-            res.status(201).json('user created');
-        } catch (e){
-            res.json(e.message);
-        }
+       const createdUser = await usersService.createUser(user);
+
+       res.json(createdUser);
     },
     getOneUser: async (req,res) => {
         const {name} = req.name;
@@ -27,14 +25,12 @@ module.exports = {
 
         res.json(user);
     },
-    deleteUser: (req, res) => {
-        try{
-            usersService.deleteUser(req.id);
+    deleteUser: async (req, res) => {
+        const {id} = req.params;
 
-            res.status(204).json('user removed');
-        }catch (e){
-            res.json(e.message);
-        }
+        const deletedUser =  await usersService.deleteUser(id);
+
+        res.json(deletedUser);
     }
 }
 
