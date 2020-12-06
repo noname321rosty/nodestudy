@@ -6,7 +6,7 @@ module.exports = (req, res, next) => {
 
         const user = usersService.getUsers(name);
 
-        if (user) {
+        if (!user) {
             throw new Error('User exist in database');
         }
 
