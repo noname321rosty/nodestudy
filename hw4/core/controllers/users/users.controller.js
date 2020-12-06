@@ -1,6 +1,5 @@
 const {usersService} = require("../../services");
 
-
 module.exports = {
     getAllUsers: async (req, res) => {
         const user = await usersService.getUsers(req.query);
