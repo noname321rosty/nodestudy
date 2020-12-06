@@ -1,29 +1,19 @@
-let db = require('../../db/index')
+const {UserModel} = require("../../db/models");
 
 module.exports = {
-    createUser: (user) => {
-        db.users.push(user);
+    createUser: (user) => UserModel.create(user),
 
-        return user;
-    },
+    getUsers: (query) => UserModel.findAll(query),
 
-    getUsers: () => {
-        const UserModel = db.users.getModel('User');
+    getUser: (name) => UserModel.findOne({
+        where: {name}
+    }),
 
-        return UserModel.findAll();
-    },
+    deleteUser: (id) => UserModel.destroy({
+        where: {id}
+    }),
 
-    getUserByEmailOrName: (email, name) => {
-        return db.users.find(user => user.email === email || user.name === name);
-    },
-
-    deleteUser: (id) => {
-        db = db.users.filter(user => user.id !== +id);
-
-        return db;
-    },
-
-    getUserById: (id) => {
-        return db.users.find(user => user.id === +id)
-    }
+    getUserById: (id) => UserModel.findOne({
+        where: {id}
+    })
 }

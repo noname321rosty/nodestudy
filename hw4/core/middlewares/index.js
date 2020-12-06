@@ -1,3 +1,4 @@
 module.exports = {
-    usersMiddlewares: require('./users')
+    usersMiddlewares: require('./users'),
+    carsMiddlewares: require('./cars')
 }

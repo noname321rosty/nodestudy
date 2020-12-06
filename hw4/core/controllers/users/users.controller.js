@@ -1,21 +1,26 @@
 const {usersService} = require("../../services");
 
 module.exports = {
-    getAllUsers: (req, res) => {
-        const user = usersService.getUsers(req.query);
+    getAllUsers: async (req, res) => {
+        const user = await usersService.getUsers(req.query);
 
         res.json(user);
     },
-    createUser: (req, res) => {
+    createUser: async (req, res) => {
         const user = req.body;
-        const createdUser = usersService.createUser(user);
+        const createdUser = await usersService.createUser(user);
 
-        res.status(201).json(createdUser);
+        res.json(createdUser)
     },
-    getUserByEmailOrName: (req, res) => {
-        const {email, name} = req.query;
+    getOneUser: async (req,res) => {
+        const {name} = req.params;
 
-        const user = usersService.getUserByEmailOrName(email, name);
+        const user = await usersService.getUser(name);
+
+        res.json(user);
+    },
+    getUserByEmailOrName: async (req, res) => {
+        const user = await usersService.getUsers(req.query);
 
         res.json(user);
     },

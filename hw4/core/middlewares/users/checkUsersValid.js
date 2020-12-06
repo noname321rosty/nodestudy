@@ -1,13 +1,19 @@
+const valid = require('joi');
+const {userValid} = require('../../validator');
+
 module.exports = (req, res, next) => {
     try {
-        const {name, password} = req.body;
+        const user = req.body;
 
-        if (!name || !password) {
-            throw new Error('Wrong name or password');
+        const {error} = valid.validate(user, userValid.userValid);
+
+        if (error) {
+            throw new Error('Wrong data')
+        } else {
+            next()
         }
 
-        next()
     } catch (e) {
-        res.status(204).json(e.message);
+        res.status.json(e.message);
     }
 }
