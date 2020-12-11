@@ -3,7 +3,7 @@ module.exports = {
     await queryInterface.createTable('user', {
       id: {
         type: Sequelize.DataTypes.INTEGER,
-        autoIncrement: true,
+        userIncrement: true,
         allowNull: false,
         primaryKey: true
       },
@@ -11,7 +11,7 @@ module.exports = {
         type: Sequelize.DataTypes.STRING,
         allowNull: false,
       },
-      user_id: {
+      car_id: {
         type: Sequelize.DataTypes.INTEGER,
         allowNull: false,
         foreignKey: true,

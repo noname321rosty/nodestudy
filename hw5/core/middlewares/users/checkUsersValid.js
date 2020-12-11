@@ -1,19 +1,23 @@
 const valid = require('joi');
 const {userValid} = require('../../validator');
 
+const statusError = require('../../errors/statuserrors');
+const {statusCode} = require('../../configs');
+const {errorhandler} = require('../../errors');
+
+
 module.exports = (req, res, next) => {
-    try {
-        const user = req.body;
+    const user = req.body;
 
-        const {error} = valid.validate(user, userValid.userValid);
+    const {error} = valid.validate(user, userValid.userValid);
 
-        if (error) {
-            throw new Error('Wrong data')
-        } else {
-            next()
-        }
+    if (error) {
+        return next(new errorhandler(
+            statusError.BAD_REQUEST.message,
+            statusError.USER_NOT_FOUND.message,
+            statusCode.BAD_REQUEST
+        ));
+    };
 
-    } catch (e) {
-        res.status.json(e.message);
-    }
+    next();
 }

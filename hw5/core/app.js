@@ -18,7 +18,6 @@ app.use('*', (err, req, res, next) => {
         });
 });
 
-
 (async () => {
     await sequelize.sync();//{alter: true}
     app.listen(3000, err => err && console.log(err) || console.log('Listen 3000'));

@@ -12,7 +12,7 @@ module.exports = (req, res, next) => {
 
         next();
     } catch (e) {
-        res.json(e.message);
+        next(e);
     }
 
 }
