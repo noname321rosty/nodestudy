@@ -1,4 +1,5 @@
 const {carsService} = require('../../services');
+const {errorhandler , statusErrors: {BAD_REQUEST}} = require('../../errors');
 
 module.exports = (req, res, next) => {
     try {
@@ -6,9 +7,12 @@ module.exports = (req, res, next) => {
 
         let cars = carsService.getCars(model);
 
-        if (!cars) {
-            throw new Error('Cars exist in database');
-        }
+        if (cars) {
+            throw new errorhandler(
+                BAD_REQUEST.message,
+                BAD_REQUEST.code
+            );
+        };
 
         next();
     } catch (e) {

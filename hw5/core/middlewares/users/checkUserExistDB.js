@@ -1,4 +1,5 @@
 const {usersService} = require('../../services');
+const {errorhandler , statusErrors: {BAD_REQUEST}} = require('../../errors');
 
 module.exports = (req, res, next) => {
     try {
@@ -7,8 +8,11 @@ module.exports = (req, res, next) => {
         const user = usersService.getUsers(name);
 
         if (user) {
-            throw new Error('User not exist in database');
-        }
+            throw new errorhandler(
+                BAD_REQUEST.message,
+                BAD_REQUEST.code
+            );
+        };
 
         next();
     } catch (e) {
