@@ -9,15 +9,15 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
 app.use('/api', apiRouter);
-
-app.use('*', (err, req ,res , next) => {
+app.use('*', (err, req, res, next) => {
     res
         .status(err.status)
         .json({
-            message:err.message,
+            message: err.message,
             code: err.customCode
         });
 });
+
 
 (async () => {
     await sequelize.sync();//{alter: true}
