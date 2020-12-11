@@ -11,6 +11,18 @@ module.exports = {
         type: Sequelize.DataTypes.STRING,
         allowNull: false,
       },
+      name: {
+        type: Sequelize.DataTypes.STRING,
+        allowNull: false,
+      },
+      email: {
+        type: Sequelize.DataTypes.STRING,
+        allowNull: false,
+      },
+      password: {
+      type: Sequelize.DataTypes.STRING,
+        allowNull: false,
+      },
       car_id: {
         type: Sequelize.DataTypes.INTEGER,
         allowNull: false,
