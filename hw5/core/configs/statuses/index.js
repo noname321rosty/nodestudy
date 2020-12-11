@@ -1,4 +1,4 @@
 module.exports = {
-    statusCode: require('statuscode.enum'),
+    statusCode: require('statusCode.enum'),
     statuses: require('statuses.enum')
 }
