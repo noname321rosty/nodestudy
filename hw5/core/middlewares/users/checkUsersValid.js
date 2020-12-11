@@ -1,7 +1,7 @@
 const valid = require('joi');
 const {userValid} = require('../../validator');
 
-const statusError = require('../../errors/statuserrors');
+const statusError = require('../../errors/statusErrors');
 const {statusCode} = require('../../configs');
 const {errorhandler} = require('../../errors');
 

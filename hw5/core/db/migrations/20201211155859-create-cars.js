@@ -1,7 +1,7 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('users', {
-      user_id: {
+    await queryInterface.createTable('cars', {
+      car_id: {
         type: Sequelize.DataTypes.INTEGER,
         autoIncrement: true,
         allowNull: false,
@@ -10,20 +10,13 @@ module.exports = {
       model: {
         type: Sequelize.DataTypes.STRING,
         allowNull: false,
-      },
-      car_id: {
-        type: Sequelize.DataTypes.INTEGER,
-        allowNull: false,
-        foreignKey: true,
-        references: {
-          model: 'cars',
-          key: 'id'
-        }
       }
+
+
     });
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('users');
+    await queryInterface.dropTable('cars');
   }
 };
