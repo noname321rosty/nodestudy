@@ -17,7 +17,7 @@ module.exports = {
         foreignKey: true,
         references: {
           model: 'cars',
-          key: 'id'
+          key: 'car_id'
         }
       }
     });
