@@ -10,7 +10,15 @@ module.exports = {
       model: {
         type: Sequelize.DataTypes.STRING,
         allowNull: false,
-      }
+      },
+      carName: {
+        type: Sequelize.DataTypes.STRING,
+        allowNull: false,
+      },
+      year: {
+        type: Sequelize.DataTypes.INTEGER,
+        allowNull: false,
+      },
     });
   },
 
