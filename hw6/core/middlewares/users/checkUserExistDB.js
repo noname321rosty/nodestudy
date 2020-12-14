@@ -8,10 +8,10 @@ module.exports = (req, res, next) => {
         const user = usersService.getUsers(name);
 
         if (user) {
-            throw new errorhandler(
+            throw next(new errorhandler(
                 BAD_REQUEST.message,
                 BAD_REQUEST.code
-            );
+            ));
         };
 
         next();

@@ -17,7 +17,7 @@ module.exports = {
        res.json(createdUser);
     },
     getOneUser: async (req,res) => {
-        const {name , password} = req.name;
+        const { name } = req.name;
 
         const user = await usersService.getUser(name);
 

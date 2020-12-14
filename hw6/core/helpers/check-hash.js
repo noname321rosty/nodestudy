@@ -1,5 +1,4 @@
 const bcrypt = require('bcrypt');
 
-module.exports = (hashedPass , password) => {
-    return bcrypt.compare(password , hashedPass);
-}
+module.exports = (hashedPass , password) => bcrypt.compare(password , hashedPass);
+
