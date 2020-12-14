@@ -1,4 +1,4 @@
-const { USER_NOT_FOUND, BAD_REQUEST} = require('../configs');
+const { USER_NOT_FOUND, BAD_REQUEST, CAR_NOT_FOUND} = require('../statuses');
 
 module.exports = {
     USER_NOT_FOUND: {

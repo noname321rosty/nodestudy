@@ -15,6 +15,8 @@ usersRouter.get('/:name', usersController.getOneUser)
 
 usersRouter.get('/query', usersController.getUserByEmailOrName);
 
+usersRouter.put('/:id' , usersController.updateUser)
+
 usersRouter.delete('/:id', usersMiddlewares.checkUsersExistDBRemove, usersController.deleteUser);
 
 module.exports = usersRouter;
