@@ -1,3 +1,4 @@
 module.exports ={
-    userValid: require('./userValid')
+    userValid: require('./userValid'),
+    updateValid: require('./updateValid')
 }
