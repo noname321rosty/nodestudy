@@ -35,7 +35,6 @@
     "@types/joi": "^14.3.4",
     "@types/jsonwebtoken": "^8.5.0",
     "@types/sequelize": "^4.28.9"
-
   },
   "lint-staged": {
     "*.{js, json}": [
