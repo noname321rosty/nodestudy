@@ -1,4 +1,4 @@
 module.exports = {
-    KEY: process.env.ACCESS_TOKEN_SERCER,
-    SUPER_KEY: process.env.REFRESH_TOKEN_SECRET
+    SECRET: process.env.SECRET,
+    SECRET_KEY: process.env.SECRET_KEY
 };

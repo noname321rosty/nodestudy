@@ -1,1 +1,4 @@
-module.exports = require('./checkRefreshToken');
+module.exports = {
+    checkRefreshToken: require('./checkRefreshToken'),
+    checkAccessToken: require('./checkAccessToken')
+};
