@@ -1,4 +1,4 @@
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken');
 
 const {authService} = require("../../services");
 const {SECRET_KEY} = require('../../configs/config');
@@ -8,19 +8,19 @@ module.exports = async (req, res, next) => {
     const token = req.get('Authorization')
 
     if (!token) {
-        return next(new errorhandler(TOKEN_NOT_FOUND, 400))
+        return next(new errorhandler(TOKEN_NOT_FOUND, 400));
     }
 
     jwt.verify(token, SECRET_KEY, err => {
         if (err) {
-            return next(new errorhandler('Not valid token', 401))
+            return next(new errorhandler('Not valid token', 401));
         }
     })
 
-    const isTokenExist = await authService.getTokensByParams({refresh_token: token})
+    const isTokenExist = await authService.getTokensByParams({refresh_token: token});
 
     if (!isTokenExist) {
-        return next(new errorhandler('Not valid token', 401))
+        return next(new errorhandler('Not valid token', 401));
     }
 
     req.userId = isTokenExist.user_id;
