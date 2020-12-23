@@ -1,4 +1,5 @@
 const {carsService} = require('../../services');
+const fs = require('fs-extra').promises
 
 module.exports ={
     getAllCars: async (req, res) => {
@@ -9,7 +10,21 @@ module.exports ={
     createCar: async (req, res) => {
         const car = req.body;
 
-        const createdCar= await carsService.createCar(car);
+        const [cars] = req.photo;
+
+        const createdCar =  await carsService.createCar(car);
+
+
+        if(cars) {
+            const photoDir = `cars/${createdCar.id}/photos`
+            const fileExtension = cars.name.split('.').pop();
+            const photoName = `${fileExtension}`
+
+            await fs.mkdir(path.resolve(process.cwd(), 'public', photoDir), {recursive: true})
+            await cars.mv(path.resolve(process.cwd(), 'public', photoDir, photoName));
+
+            await carsService.updateCar(createdCar.id, {photo: `${photoDir}/${photoName}`})
+        }
 
         res.json(createdCar);
     },

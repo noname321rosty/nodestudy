@@ -15,5 +15,8 @@ module.exports = {
 
     getUserById: (id) => UserModel.findOne({
         where: {id}
+    }),
+    updateUser: (id) => UserModel.update({
+        where: {id}
     })
 }

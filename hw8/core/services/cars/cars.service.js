@@ -12,4 +12,7 @@ module.exports = {
     deleteCar: (id) => UserModel.destroy({
         where: {id}
     }),
+    updateCar: (id) => UserModel.update({
+        where: {id}
+    })
 }
