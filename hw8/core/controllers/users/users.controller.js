@@ -32,14 +32,14 @@ module.exports = {
         const createdUser =  await usersService.createUser(user);
 
         if(avatar) {
-            const photoDir = `users/${createdUser.id}/photos`
+            const photoDir = `photos`
             const fileExtension = avatar.name.split('.').pop();
             const photoName = `${fileExtension}`
 
             await fs.mkdir(path.resolve(process.cwd(), 'public', photoDir), {recursive: true})
             await avatar.mv(path.resolve(process.cwd(), 'public', photoDir, photoName));
 
-            await usersService.updateUser(createdUser.id, {photo: `${photoDir}/${photoName}`})
+            await usersService.updateUser(createdUser.id, {photo:`${photoName}`})
         }
 
         res.json(createdUser);
