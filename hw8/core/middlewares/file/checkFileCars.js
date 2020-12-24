@@ -24,7 +24,7 @@ module.exports = async (req, res , next) => {
             if(size > filesOptions.FILE_MAX_SIZE) {
                 return next (new errorhandler('File size is not valid',400));
             }
-            req.docs.push(file)
+            req.docs.push(file);
         }
         return next(new errorhandler(`File ${name} is not valid`,400));
 

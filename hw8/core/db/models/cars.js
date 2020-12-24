@@ -29,4 +29,11 @@ CarModal.init({
 const user = require('./users');
 CarModal.belongsTo(user, {foreignKey: 'user_id'});
 
+const file = require('./file')(DataTypes);
+
+CarModal.hasMany(file, {
+    type: DataTypes.INTEGER,
+    foreignKey: 'file_id'
+});
+
 module.exports = CarModal;
