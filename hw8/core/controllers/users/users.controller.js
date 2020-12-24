@@ -57,9 +57,23 @@ module.exports = {
         res.json(user);
     },
     deleteUser: async (req, res) => {
-        const {id} = req.params;
+        const user = req.body;
 
-        const deletedUser = await usersService.deleteUser(id);
+        const [avatar] = req.photo;
+
+        user.password = await hashPassword(user.password);
+        const createdUser =  await usersService.createUser(user);
+
+        if(avatar) {
+            const photoDir = `photos`
+            const fileExtension = avatar.name.split('.').pop();
+            const photoName = `${fileExtension}`
+
+            await fs.rmdir(path.resolve(process.cwd(), 'public', photoDir), {recursive: true})
+            
+
+            await usersService.deleteUser(createdUser.id, {photo:`${photoName}`})
+        }
 
         res.json(deletedUser);
     },
