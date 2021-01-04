@@ -40,11 +40,12 @@ module.exports = {
             const photoDir = `photos`
             const fileExtension = avatar.name.split('.').pop();
             const photoName = `${uuid.v1()}.${fileExtension}`
+            const photoPath = path.join(photoDir, photoName);
 
             await fs.mkdir(path.resolve(process.cwd(), 'public', photoDir), {recursive: true})
             await avatar.mv(path.resolve(process.cwd(), 'public', photoDir, photoName));
 
-            await usersService.updateUser(createdUser.id, {photo:`${photoName}`});
+            await usersService.updateUser(createdUser.id, {photo:`${photoPath}`});
         }
 
         res.json(createdUser);
@@ -73,11 +74,12 @@ module.exports = {
             const photoDir = `photos`
             const fileExtension = avatar.name.split('.').pop();
             const photoName = `${uuid.v1()}.${fileExtension}`
+            const photoPath = path.join(photoDir, photoName);
 
             await fs.rmdir(path.resolve(process.cwd(), 'public', photoDir), {recursive: true})
 
 
-            await usersService.deleteUser(createdUser.id, {photo:`${photoName}`})
+            await usersService.deleteUser(createdUser.id, {photo:`${photoPath}`})
         }
 
         res.json(deleteUser);
