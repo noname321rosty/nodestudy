@@ -5,11 +5,11 @@ const LogSchema = new Schema({
         type: String,
         required: true,
     },
-    student_id: {
+    user_id: {
         type: Number,
         required: true,
     },
-    action_time: {
+    time: {
         type: Date,
         required: true
     }

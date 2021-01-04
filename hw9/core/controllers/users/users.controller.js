@@ -6,7 +6,7 @@ const {usersService} = require("../../services");
 const {hashPassword, checkHash} = require('../../helpers');
 const {errorhandler} = require('../../errors');
 const {statusErrors: {BAD_REQUEST}} = require('../../errors');
-
+const { transaction } = require('../../db').getInstance();
 
 
 module.exports = {
@@ -16,6 +16,7 @@ module.exports = {
         res.json(user);
     },
     updateUser: async (req,res,next) => {
+
         const {password} = req.body;
         const user = req.user;
 
@@ -29,23 +30,25 @@ module.exports = {
         }
     },
     createUser: async (req, res) => {
+        const transaction = await transaction();
+
         const user = req.body;
 
         const [avatar] = req.photo;
 
-        user.password = await hashPassword(user.password);
+        user.password = await hashPassword(user.password , transaction);
         const createdUser =  await usersService.createUser(user);
 
         if(avatar) {
             const photoDir = `photos`
             const fileExtension = avatar.name.split('.').pop();
-            const photoName = `${uuid.v1()}.${fileExtension}`
+            const photoName = `${uuid}.${fileExtension}`
             const photoPath = path.join(photoDir, photoName);
 
             await fs.mkdir(path.resolve(process.cwd(), 'public', photoDir), {recursive: true})
             await avatar.mv(path.resolve(process.cwd(), 'public', photoDir, photoName));
 
-            await usersService.updateUser(createdUser.id, {photo:`${photoPath}`});
+            await usersService.updateUser(createdUser.id, {photo:`${photoPath}`} , transaction);
         }
 
         res.json(createdUser);
@@ -63,23 +66,25 @@ module.exports = {
         res.json(user);
     },
     deleteUser: async (req, res) => {
+        const transaction = await transaction();
+
         const user = req.body;
 
         const [avatar] = req.photo;
 
         user.password = await hashPassword(user.password);
-        const createdUser =  await usersService.createUser(user);
+        const createdUser =  await usersService.createUser(user , transaction);
 
         if(avatar) {
             const photoDir = `photos`
             const fileExtension = avatar.name.split('.').pop();
-            const photoName = `${uuid.v1()}.${fileExtension}`
+            const photoName = `${uuid}.${fileExtension}`
             const photoPath = path.join(photoDir, photoName);
 
             await fs.rmdir(path.resolve(process.cwd(), 'public', photoDir), {recursive: true})
 
 
-            await usersService.deleteUser(createdUser.id, {photo:`${photoPath}`})
+            await usersService.deleteUser(createdUser.id, {photo:`${photoPath}`}, transaction);
         }
 
         res.json(deleteUser);

@@ -1,5 +1,6 @@
 const {carsService} = require('../../services');
 const fs = require('fs-extra').promises
+const { transaction } = require('../../db').getInstance();
 
 module.exports ={
     getAllCars: async (req, res) => {
@@ -8,11 +9,13 @@ module.exports ={
         res.json(car);
     },
     createCar: async (req, res) => {
+        const transaction = await transaction();
+
         const car = req.body;
 
         const [cars] = req.photo;
 
-        const createdCar =  await carsService.createCar(car);
+        const createdCar =  await carsService.createCar(car , transaction);
 
 
         if(cars) {
@@ -36,9 +39,11 @@ module.exports ={
         res.json(car);
     },
     deleteCar: async (req, res) => {
+        const transaction = await transaction();
+
         const {id} = req.params;
 
-        const deletedCar =  await carsService.deleteCar(id);
+        const deletedCar =  await carsService.deleteCar(id , transaction);
 
         res.json(deletedCar);
     }
